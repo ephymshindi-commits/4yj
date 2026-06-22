@@ -7,7 +7,8 @@ export default function AudioPlayer() {
   const [showTooltip, setShowTooltip] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const backgroundMusicUrl = "https://assets.mixkit.co/music/preview/mixkit-dreamy-piano-and-strings-1050.mp3";
+  // 1. Move assets to public folder to avoid ERR_CONNECTION_RESET from external sources
+  const backgroundMusicUrl = "/mixkit-dreamy-piano-and-strings-1050.mp3";
 
   // Tooltip timer
   useEffect(() => {
@@ -17,14 +18,25 @@ export default function AudioPlayer() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Safe initialization on mount to prevent browser policy crashes
   useEffect(() => {
     const audio = new Audio(backgroundMusicUrl);
     audio.loop = true;
     audio.volume = 0.45;
+    
+    // 2. Set crossOrigin to allow proper resource loading on hosted domains
+    audio.crossOrigin = "anonymous";
     audioRef.current = audio;
 
-    // Cleanup audio on component unmount
+    // 3. Fallback: Catch any shadow autoplay attempts by the browser on mount
+    const handleAutoplayFailure = () => {
+      audio.play().catch(() => {
+        console.log("Autoplay prevented as expected. Awaiting user interaction.");
+      });
+    };
+    
+    // Optional: Attempt to play if browser layout allows it, else fail gracefully
+    handleAutoplayFailure();
+
     return () => {
       audio.pause();
       audioRef.current = null;
@@ -38,6 +50,7 @@ export default function AudioPlayer() {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
+      // 4. Force browser to re-verify user intent inside an active click thread
       audioRef.current
         .play()
         .then(() => {
@@ -45,7 +58,7 @@ export default function AudioPlayer() {
           setShowTooltip(false);
         })
         .catch((err) => {
-          console.log("Audio play blocked by browser policies", err);
+          console.error("Audio play blocked by browser policies:", err);
         });
     }
   };
