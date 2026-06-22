@@ -1,0 +1,6 @@
+{
+  "name": "4YJ Angel Birthday",
+  "description": "A luxury cinematic birthday experience for 4YJ Angel, manager at MshindiSecure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
