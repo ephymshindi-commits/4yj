@@ -1,0 +1,24 @@
+{
+  "short_name": "4YJ Angel",
+  "name": "To 4YJ Angel — A Cinematic Portrait",
+  "description": "Premium luxury birthday experience for 4YJ Angel.",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dnaw2g9c0/image/upload/v1782121261/f_auto,q_auto,w_192,h_192,c_fill,g_face/IMG-20260622-WA0001_wr9lv8.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dnaw2g9c0/image/upload/v1782121261/f_auto,q_auto,w_512,h_512,c_fill,g_face/IMG-20260622-WA0001_wr9lv8.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -4,6 +4,7 @@ import MemoryGallery from "./components/MemoryGallery";
 import LoveNotes from "./components/LoveNotes";
 import Footer from "./components/Footer";
 import AudioPlayer from "./components/AudioPlayer";
+import InstallPrompt from "./components/InstallPrompt";
 
 export default function App() {
   return (
@@ -13,6 +14,9 @@ export default function App() {
         <div className="ambient-glow-top"></div>
         <div className="ambient-glow-bottom"></div>
       </div>
+
+      {/* Floating Installation Prompt Alert */}
+      <InstallPrompt />
 
       {/* Immersive Background Audio Controller */}
       <div className="relative z-50">
